@@ -1,0 +1,47 @@
+
+
+.window {
+    margin: 10% auto 10% auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.centralize {
+    display: flex;
+    justify-content: center;
+    margin: 5px 0 5px 0;
+}
+
+.button-blue {
+    padding: 10px 20px;
+    margin: 0px 10px 0px 10px;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button-red {
+    padding: 10px 20px;
+    margin: 0px 10px 0px 10px;
+    background-color: firebrick;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.button-red, .button-blue {
+    width: 60px;
+    text-align: center;
+}

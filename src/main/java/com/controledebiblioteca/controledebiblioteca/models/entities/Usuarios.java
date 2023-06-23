@@ -2,23 +2,25 @@ package com.controledebiblioteca.controledebiblioteca.models.entities;
 
 import com.controledebiblioteca.controledebiblioteca.models.enums.UsuarioTipo;
 
-public class Usuario {
+public class Usuarios {
 
-    private String id;
+    private Integer id;
     private String login;
     private String senha;
     private UsuarioTipo tipo;
 
-    public Usuario(String login, String senha) {
+    public Usuarios(String login, String senha) {
         setLogin(login);
         setSenha(senha);
     }
 
-    public String getId() {
+    public Usuarios() {}
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -48,10 +50,7 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    public static boolean checkIfAdmin(Usuario usuario) {
-        if (usuario.getLogin().equals("admin") && usuario.getSenha().equals("admin")) {
-            return true;
-        }
-        return false;
+    public void setTipo(String tipo) {
+        this.tipo = UsuarioTipo.valueOf(tipo);
     }
 }

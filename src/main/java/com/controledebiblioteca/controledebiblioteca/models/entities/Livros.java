@@ -10,20 +10,22 @@ public class Livros {
     private String nome;
     private LocalDate data;
     private Autores autor;
+    private LivroStatus status;
+
+    public Livros() {}
+
+    public Livros(Integer id, String status) {
+        this.id = id;
+        this.status = LivroStatus.valueOf(status);
+    }
 
     public LivroStatus getStatus() {
         return status;
     }
 
-    public void setStatus(LivroStatus status) {
-        this.status = status;
-    }
-
     public void setStatus(String status) {
         this.status = LivroStatus.valueOf(status);
     }
-
-    private LivroStatus status;
 
     public Integer getId() {
         return id;

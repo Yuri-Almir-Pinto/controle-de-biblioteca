@@ -5,13 +5,15 @@ import jakarta.servlet.*;
 import jakarta.servlet.annotation.*;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import com.controledebiblioteca.controledebiblioteca.utils.Autenticacao;
 
 import java.io.IOException;
 
 @WebFilter(filterName = "AutenticationFilter", value = {"/RedirectServlet", "/EditarStatusLivrosServlet",
-"/MostrarLivrosServlet"})
+"/MostrarLivrosServlet", "/DeletarLivroServlet", "/EditarLivroServlet", "/CadastrarLivroServlet",
+"/EditarNomeAutorServlet", "/CadastrarAutorServlet", "/DeletarAutorServlet",
+"/MostrarAutoresServlet", "/MostrarCadastroAutorServlet", "/MostrarCadastroLivroServlet",
+"/MostrarSelectHubServlet", "/MostrarUsuariosServlet"})
 public class AutenticationFilter implements Filter {
     public void init(FilterConfig config) throws ServletException {
     }
@@ -24,7 +26,7 @@ public class AutenticationFilter implements Filter {
         if (Autenticacao.isLoggedIn((HttpServletRequest) request)) {
             chain.doFilter(request, response);
         } else {
-            Autenticacao.erroAutenticacao((HttpServletResponse) response, "Insira seu login e senha.");
+            Autenticacao.erroAutenticacao((HttpServletRequest) request, (HttpServletResponse) response, "Insira seu login e senha.");
         }
     }
 }

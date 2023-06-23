@@ -28,7 +28,10 @@ public class ConnectionFactory {
 
     public static void statementClose(Statement statement) {
         try {
-            statement.close();
+            if (statement != null) {
+                statement.close();
+            }
+
         } catch (SQLException e) {
             throw new DatabaseIntegrityException(e.getMessage());
         }
@@ -36,7 +39,10 @@ public class ConnectionFactory {
 
     public static void resultSetClose(ResultSet resultSet) {
         try {
-            resultSet.close();
+            if (resultSet != null) {
+                resultSet.close();
+            }
+
         } catch (SQLException e) {
             throw new DatabaseIntegrityException(e.getMessage());
         }

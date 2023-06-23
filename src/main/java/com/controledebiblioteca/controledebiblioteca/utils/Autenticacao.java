@@ -1,5 +1,9 @@
 package com.controledebiblioteca.controledebiblioteca.utils;
 
+import com.controledebiblioteca.controledebiblioteca.controllers.LogoutServlet;
+import com.controledebiblioteca.controledebiblioteca.models.entities.Usuarios;
+import com.controledebiblioteca.controledebiblioteca.models.enums.UsuarioTipo;
+import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -24,7 +28,28 @@ public class Autenticacao {
         return false;
     }
 
-    public static void erroAutenticacao (HttpServletResponse response, String mensagem) throws IOException {
-        response.sendRedirect(LocalHost.link + "?erro=" + mensagem);
+    public static boolean isAdmin (HttpServletRequest request) {
+        if (isLoggedIn(request)) {
+            HttpSession session = request.getSession(false);
+            Usuarios usuario = (Usuarios) session.getAttribute("usuario");
+            if (isValid(usuario) && usuario.getTipo() == UsuarioTipo.ADMINISTRADOR) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean isValid (Usuarios usuario) {
+        if (usuario != null) {
+            if (usuario.getId() != null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static void erroAutenticacao (HttpServletRequest request, HttpServletResponse response, String mensagem) throws IOException, ServletException {
+        request.setAttribute("erro", mensagem);
+        request.getRequestDispatcher("LogoutServlet").forward(request, response);
     }
 }

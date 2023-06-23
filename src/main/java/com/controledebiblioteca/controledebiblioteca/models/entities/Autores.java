@@ -4,7 +4,15 @@ public class Autores {
     private Integer id;
     private String nome;
 
-    public Integer getId() {
+    public Autores() {}
+
+    public Autores(Integer id, String nome) {
+        this.id = id;
+        this.nome = nome;
+    }
+
+
+    public Integer getId() throws NullPointerException {
         return id;
     }
 
@@ -12,7 +20,7 @@ public class Autores {
         this.id = id;
     }
 
-    public String getNome() {
+    public String getNome() throws NullPointerException {
         return nome;
     }
 
